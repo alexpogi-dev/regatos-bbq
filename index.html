@@ -289,12 +289,194 @@
   object-fit: cover;
   border-radius: 20px;
 }
+/* SOFT ORANGE GLOW EFFECT */
+.about-image img {
+  box-shadow:
+    0 0 25px rgba(255, 152, 0, 0.25),
+    0 0 50px rgba(255, 87, 34, 0.15);
+}
+.about-image img:hover {
+  box-shadow:
+    0 0 35px rgba(255, 152, 0, 0.4),
+    0 0 70px rgba(255, 87, 34, 0.25);
+  transform: scale(1.02);
+  transition: 0.3s ease;
+}
+/* SMOKE EFFECT */
+.smoke {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 80%, rgba(255,255,255,0.08), transparent 60%),
+              radial-gradient(circle at 70% 60%, rgba(255,255,255,0.06), transparent 55%);
+  animation: smokeMove 10s infinite linear;
+  pointer-events: none;
+  border-radius: 20px;
+}
 
+@keyframes smokeMove {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.about-image {
+  position: relative;
+  overflow: hidden;
+
+
+}
+/* EMBERS */
+.embers span {
+  position: absolute;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  background: orange;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: rise 4s linear infinite;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-200px) scale(0);
+    opacity: 0;
+  }
+}
+
+/* PARALLAX ZOOM */
+.about-image img {
+  transition: transform 0.2s ease-out;
+}
+
+/* FADE IN */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.menu-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,152,0,0.2), transparent);
+  transform: translateX(-100%);
+}
+
+.menu-card:hover::after {
+  transform: translateX(100%);
+  transition: 0.6s;
+}
+
+.menu-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 15px 40px rgba(255, 140, 0, 0.25);
+}
+
+.cart {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+}
+
+.cart ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.cart li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.btn {
+  box-shadow: 0 10px 25px rgba(198,40,40,0.4);
+}
+
+.hero h2 {
+  text-shadow: 0 0 20px rgba(255,152,0,0.6);
+}
+
+.gcash-qr {
+  width: 220px;
+  margin: 20px auto;
+  display: block;
+}
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .modal-content, .modal-content * {
+    visibility: visible;
+  }
+
+  .modal-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
 
   </style>
 </head>
 <body>
+    <h2>Orders Dashboard</h2>
+    <div id="orders"></div>
+    <script>
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const container = document.getElementById('orders');
 
+    orders.forEach(o => {
+    container.innerHTML += `
+    <div class="order">
+      <p><b>${o.time}</b></p>
+      <pre>${o.items}</pre>
+      <p>Total: ₱${o.total}</p>
+      <hr>
+    </div>
+  `;
+});
+</script>
+    <div id="gcashModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeGCash()">×</span>
+    <h3>Pay via GCash</h3>
+    <img src="QR.jpg" class="gcash-qr">
+    <p>Total: ₱<span id="total"></span></p>
+    <button class="btn" onclick="confirmOrder()">I Have Paid</button>
+  </div>
+</div>
+
+    <div class="cart">
+  <h4>Your Order</h4>
+  <ul id="cartItems"></ul>
+  <p>Total: ₱<span id="total">0</span></p>
+  <button class="btn" onclick="checkout()">Checkout</button>
+</div>
+
+<audio id="grillSound" src="sizzle.mp3" preload="auto"></audio>
 <header>
   <div class="logo">
     <img src="photo1.png" alt="BBQ Logo">
@@ -322,26 +504,25 @@
     <h3>Choose Your Order</h3>
 
     <div class="order-grid">
-
       <div class="order-card">
         <img src="photo2.jpg" alt="BBQ Set A">
         <h4>BBQ Set A</h4>
         <p>5 Pork BBQ + Rice + Drink</p>
-        <button>Select</button>
+        <button onclick="addToCart('BBQ Set A', 150)">Add</button>
       </div>
 
       <div class="order-card">
         <img src="photo3.jpg" alt="BBQ Set B">
         <h4>BBQ Set B</h4>
         <p>5 Chicken BBQ + Rice + Drink</p>
-        <button>Select</button>
+        <button onclick="addToCart('BBQ Set B', 150)">Add</button>
       </div>
 
       <div class="order-card">
         <img src="photo4.jpeg" alt="Family Set">
         <h4>Family Set</h4>
         <p>10 Mixed BBQ + 2 Rice + 2 Drinks</p>
-        <button>Select</button>
+        <button onclick="addToCart('BBQ Set C', 150)">Add</button>
       </div>
 
     </div>
@@ -355,15 +536,15 @@
     <div class="menu-card">
       <img src="photo2.jpg" alt="BBQ">
       <div class="content">
-        <h4>Pork BBQ</h4>
+        <h4>Hotdog BBQ</h4>
         <p>Classic Filipino pork BBQ with sweet smoky glaze.</p>
       </div>
     </div>
     <div class="menu-card">
       <img src="photo3.jpg" alt="BBQ">
       <div class="content">
-        <h4>Chicken Inasal</h4>
-        <p>Juicy grilled chicken marinated in spices.</p>
+        <h4>Pork BBQ</h4>
+        <p>Juicy grilled pork marinated in spices.</p>
       </div>
     </div>
     <div class="menu-card">
@@ -375,9 +556,10 @@
     </div>
   </div>
 </section>
-
-<section id="about" class="section about">
+<section id="about" class="section about fade-in">
   <div class="about-image">
+    <div class="smoke"></div>
+    <div class="embers"></div>
     <img src="photo5.jpg" alt="Grilling">
     <img src="photo6.jpg" alt="Grilling">
   </div>
@@ -404,6 +586,88 @@
   function closeOrderMenu() {
     document.getElementById('orderModal').style.display = 'none';
   }
+
+// EMBERS EFFECT
+const embers = document.querySelector('.embers');
+
+setInterval(() => {
+  const ember = document.createElement('span');
+  ember.style.left = Math.random() * 100 + '%';
+  ember.style.animationDuration = 3 + Math.random() * 3 + 's';
+  embers.appendChild(ember);
+
+  setTimeout(() => ember.remove(), 5000);
+}, 300);
+
+window.addEventListener('scroll', () => {
+  const img = document.querySelector('.about-image img');
+  const rect = img.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+
+  if (rect.top < windowHeight && rect.bottom > 0) {
+    const scrollPercent = 1 - rect.top / windowHeight;
+    img.style.transform = `scale(${1 + scrollPercent * 0.05})`;
+  }
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+});
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// GRILL SOUND EFFECT
+let soundPlayed = false;
+
+document.addEventListener('click', () => {
+  if (!soundPlayed) {
+    const sound = document.getElementById('grillSound');
+    sound.volume = 0.08;   // VERY subtle
+    sound.play();
+    soundPlayed = true;
+  }
+});
+// SHOPPING CART FUNCTIONALITY
+let total = 0;
+
+function addToCart(name, price) {
+  const list = document.getElementById('cartItems');
+  const li = document.createElement('li');
+  li.innerHTML = `${name} <span>₱${price}</span>`;
+  list.appendChild(li);
+
+  total += price;
+  document.getElementById('total').textContent = total;
+}
+
+function checkout() {
+  document.getElementById('gcashModal').style.display = 'flex';
+}
+function closeGCash() {
+  document.getElementById('gcashModal').style.display = 'none';
+}
+
+function confirmOrder() {
+  const items = document.getElementById('cartItems').innerText;
+  const total = document.getElementById('total').innerText;
+
+  saveOrder(items, total);
+  window.print();
+}
+
+function saveOrder(items, total) {
+  orders.push({
+    items,
+    total,
+    time: new Date().toLocaleString()
+  });
+  localStorage.setItem('orders', JSON.stringify(orders));
+}
+
 </script>
 
 </body>
