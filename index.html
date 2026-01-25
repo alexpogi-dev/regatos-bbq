@@ -1038,42 +1038,64 @@ nav a {
 }
 
 /* 2. Mobile Specific Styling */
-@media screen and (max-width: 768px) {
-  .mobile-top-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 15px 0;
-    background: #000; /* Matches your dark theme */
-    position: sticky;
-    top: 0;
-    z-index: 1001; /* Stays above the header */
-  }
+@media screen and (max-width: 480px) {
+      .mobile-top-bar {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 15px 0;
+        background: #000;
+        position: sticky;
+        top: 0;
+        z-index: 1001;
+      }
 
   /* Centering the button inside the bar */
   .mobile-top-bar .order-btn {
-    display: block;
-    background-color: #c62828;
-    color: white;
-    padding: 12px 0;
-    width: 90%; /* Centers it with 5% gap on each side */
-    max-width: 400px;
-    border-radius: 50px;
-    border: none;
-    font-weight: bold;
-    font-family: 'Poppins', sans-serif;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 15px rgba(198, 40, 40, 0.3);
-  }
+        display: block !important;
+        width: 90% !important;
+        max-width: 380px;
+        background-color: #d32f2f;
+        color: white;
+        padding: 12px 0;
+        border-radius: 50px;
+        border: none;
+        font-weight: bold;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        text-transform: uppercase;
+        cursor: pointer;
+      }
 
   /* Push the header down so they don't overlap */
-  header {
-    top: 70px !important; 
-  }
-}
+  /* --- HEADER & NAV --- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: rgba(0,0,0,.85);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo { display: flex; align-items: center; gap: 15px; }
+    .logo img { width: 60px; }
+    .logo h1 {
+      font-family: 'Bebas Neue', cursive;
+      color: var(--primary);
+      letter-spacing: 2px;
+    }
+
+    nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    nav a:hover { color: var(--primary); }
   </style>
 </head>
 
