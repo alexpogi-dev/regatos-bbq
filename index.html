@@ -750,18 +750,20 @@ nav a {
   overflow-x: auto;
 }
 
-.about-images-horizontal {
-  display: flex;
-  gap: 20px;
-  flex-wrap: nowrap;
+.about-images-horizontal img {
+  width: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+
 
 .about-images-horizontal img {
   width: 250px;
   height: 200px;
   object-fit: cover;
-  border-radius: 15px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .about-images-horizontal img:hover {
@@ -771,7 +773,7 @@ nav a {
 
 /* SCROLLBAR STYLING (optional) */
 .about-images-horizontal::-webkit-scrollbar {
-  height: 8px;
+  width: 6px;
 }
 
 .about-images-horizontal::-webkit-scrollbar-thumb {
@@ -782,6 +784,7 @@ nav a {
 .about-images-horizontal::-webkit-scrollbar-track {
   background: #333;
 }
+
 
 /* COLLAGE IMAGES */
 .about-images-collage {
@@ -1014,6 +1017,53 @@ nav a {
   cursor: pointer;
   text-align: center;
 }
+.reviews-header {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 26px;
+  color: #ffb74d;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow:
+    0 0 6px rgba(255,152,0,0.8),
+    0 0 16px rgba(255,87,34,0.6);
+  letter-spacing: 2px;
+}
+.review-img {
+  opacity: 0;
+  transform: translateY(30px) scale(0.97);
+  transition: 0.6s ease;
+}
+
+.review-img.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.about-images-horizontal img {
+  background: #111;
+  padding: 6px;
+}
+/* 📱 MOBILE: About Us images stack vertically */
+@media (max-width: 768px) {
+  .about-images-horizontal {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-x: hidden; /* remove horizontal scroll */
+  }
+
+  .about-images-horizontal img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+  }
+}
+@media (max-width: 768px) {
+  .about-images-horizontal img {
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(255,140,0,0.25);
+  }
+}
+
   </style>
 </head>
 
@@ -1137,29 +1187,29 @@ nav a {
 
   <!-- DYNAMIC COLLAGE -->
 <!-- CUSTOMER PHOTO RATING COLLAGE -->
+ <div class="reviews-header">
+  Rated by customers
+</div>
 <div class="about-images-collage" onclick="openAboutModal()">
   <figure class="collage-img img1">
-    <img src="photo5.jpg" alt="Happy Customer 1">
+    <img src="photo5.jpg" class="review-img" alt="Happy Customer">
     <figcaption>⭐⭐⭐⭐⭐</figcaption>
   </figure>
   <figure class="collage-img img2">
-    <img src="photo6.jpg" alt="Happy Customer 2">
+    <img src="photo6.jpg" class="review-img" alt="Happy Customer">
     <figcaption>⭐⭐⭐⭐⭐</figcaption>
   </figure>
   <figure class="collage-img img3">
-    <img src="photo7.jpg" alt="Happy Customer 3">
+    <img src="photo7.jpg" class="review-img" alt="Happy Customer">
     <figcaption>⭐⭐⭐⭐⭐</figcaption>
   </figure>
   <figure class="collage-img img4">
-    <img src="photo8.jpg" alt="Happy Customer 4">
+    <img src="photo8.jpg" class="review-img" alt="Happy Customer">
     <figcaption>⭐⭐⭐⭐⭐</figcaption>
   </figure>
   <div class="overlay">
-    <p>Click to see all our happy customers!</p>
-  </div>
 </div>
-
-
+</div>
   <!-- MODAL WITH HORIZONTAL IMAGES -->
   <div id="aboutModal" class="modal">
     <div class="modal-content about-modal-content">
@@ -1298,6 +1348,18 @@ window.addEventListener('scroll', () => {
   const offset = window.scrollY * 0.25;
   hero.style.backgroundPosition = `center ${offset}px`;
 });
+const reviewObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll(".review-img").forEach(img => {
+  reviewObserver.observe(img);
+});
+
 </script>
 
 </body>
