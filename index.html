@@ -368,33 +368,16 @@ html {
       border-radius: 20px;
     }
     .about-text {
+  position: relative;
   max-width: 900px;
+  padding: 40px 30px;
   text-align: center;
+  background: rgba(0, 0, 0, 0.65); /* DARK GLASS */
+  border-radius: 24px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  overflow: hidden;
 }
-
-    /* EMBERS */
-.embers span {
-  position: absolute;
-  bottom: 0;
-  width: 4px;
-  height: 4px;
-  background: orange;
-  border-radius: 50%;
-  opacity: 0.8;
-  animation: rise 4s linear infinite;
-}
-
-@keyframes rise {
-  from {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-200px) scale(0);
-    opacity: 0;
-  }
-}
-.p{ color: #ff7300;}
 
 nav a {
   padding: 10px 12px;
@@ -526,35 +509,29 @@ nav a {
   transform: scale(1.05);
   box-shadow: 0 10px 30px rgba(238, 77, 3, 0.3);
 }
-.about-text {
-  line-height: 1.6;
-  color: #ff7300; /* bright orange for BBQ vibe */
-  text-align: center; /* centered text */
-  font-family: 'Bebas Neue', cursive;
-  position: relative;
-  z-index: 2;
-  padding: 20px;
-}
 
 /* Text Glow Effect (like embers/fire) */
 .about-text h3 {
-  color: #ff4500; /* fiery red-orange */
-  text-shadow:
-    0 0 5px #ff4500,
-    0 0 10px #ff6347,
-    0 0 15px #ffa500,
-    0 0 20px #ff8c00;
+  font-family: 'Bebas Neue', cursive;
   font-size: 42px;
+  color: #ff9800;
   margin-bottom: 20px;
+  text-shadow:
+    0 0 6px rgba(255,152,0,0.8),
+    0 0 18px rgba(255,87,34,0.6);
 }
+
 
 /* Paragraph smoky glow */
 .about-text p {
-  font-size: 25px;
-  color: #fff3e0; /* soft yellow-white for contrast */
-  text-shadow: 0 0 10px rgba(255, 140, 0, 0.6);
-  justify-content: left;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #f1f1f1; /* NO GLOW */
+  text-shadow: none;
+  max-width: 760px;
+  margin: 0 auto;
 }
+
 
 /* Optional: subtle smoke behind text */
 .about-text::before {
@@ -565,6 +542,163 @@ nav a {
   filter: blur(20px);
   z-index: -1;
 }
+
+/* random positions */
+.about-figure {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.about-figure figcaption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: #ffb74d;
+  text-align: center;
+  font-weight: 600;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.about-figure:hover figcaption {
+  opacity: 1;
+}
+@media (max-width: 768px) {
+  .about-images-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+  .about-images-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .about-figure figcaption {
+    opacity: 1; /* always visible on mobile */
+    font-size: 13px;
+  }
+
+  .about-text h3 {
+    font-size: 34px;
+  }
+@media (max-width: 480px) {
+  .about-text {
+    padding: 30px 20px;
+  }
+
+  .about-text h3 {
+    font-size: 34px;
+  }
+
+  .about-text p {
+    font-size: 16px;
+  }
+}
+
+  .about-images-grid {
+    grid-template-columns: 1fr;
+  }
+/* 🔥 DENSE FIRE EMBERS (WORKING) */
+.embers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.embers span {
+  position: absolute;
+  bottom: -20px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff59d, #ff9800, #e65100);
+  opacity: 0.9;
+  animation: emberUp linear infinite;
+}
+
+/* DISTRIBUTE EMBERS ACROSS WIDTH */
+.embers span:nth-child(1)  { left: 5%;  animation-duration: 3s; }
+.embers span:nth-child(2)  { left: 10%; animation-duration: 4s; }
+.embers span:nth-child(3)  { left: 15%; animation-duration: 2.5s; }
+.embers span:nth-child(4)  { left: 20%; animation-duration: 3.5s; }
+.embers span:nth-child(5)  { left: 25%; animation-duration: 4.2s; }
+.embers span:nth-child(6)  { left: 30%; animation-duration: 3s; }
+.embers span:nth-child(7)  { left: 35%; animation-duration: 2.8s; }
+.embers span:nth-child(8)  { left: 40%; animation-duration: 3.8s; }
+.embers span:nth-child(9)  { left: 45%; animation-duration: 2.6s; }
+.embers span:nth-child(10) { left: 50%; animation-duration: 4.5s; }
+.embers span:nth-child(11) { left: 55%; animation-duration: 3.2s; }
+.embers span:nth-child(12) { left: 60%; animation-duration: 2.7s; }
+.embers span:nth-child(13) { left: 65%; animation-duration: 4s; }
+.embers span:nth-child(14) { left: 70%; animation-duration: 3.4s; }
+.embers span:nth-child(15) { left: 75%; animation-duration: 2.5s; }
+.embers span:nth-child(16) { left: 80%; animation-duration: 4.1s; }
+.embers span:nth-child(17) { left: 85%; animation-duration: 3s; }
+.embers span:nth-child(18) { left: 90%; animation-duration: 3.7s; }
+.embers span:nth-child(19) { left: 95%; animation-duration: 2.4s; }
+.embers span:nth-child(20) { left: 12%; animation-duration: 4.8s; }
+
+@keyframes emberUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-320px) scale(0);
+    opacity: 0;
+  }
+}
+/* 🔥 WORKING DENSE EMBERS */
+.embers {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.about-text h3,
+.about-text p {
+  position: relative;
+  z-index: 2;
+}
+
+.embers span {
+  position: absolute;
+  bottom: -20px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff59d, #ff9800, #e65100);
+  opacity: 0.9;
+  animation: emberUp linear infinite;
+}
+
+/* spread embers */
+.embers span:nth-child(odd) {
+  animation-duration: 3s;
+}
+.embers span:nth-child(even) {
+  animation-duration: 4.5s;
+}
+
+@keyframes emberUp {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-300px) scale(0);
+    opacity: 0;
+  }
+}
+
+
 
   </style>
 </head>
@@ -690,14 +824,41 @@ nav a {
 
   <!-- IMAGES -->
   <div class="about-images-grid">
+  <figure class="about-figure">
     <img src="photo5.jpg" alt="BBQ Setup">
-    <img src="photo6.jpg" alt="BBQ Setup">
+    <figcaption>🔥 Freshly Grilled Every Day</figcaption>
+  </figure>
+
+  <figure class="about-figure">
+    <img src="photo6.jpg" alt="BBQ Grill">
+    <figcaption>🍖 Authentic Filipino BBQ</figcaption>
+  </figure>
+
+  <figure class="about-figure">
     <img src="photo7.jpg" alt="BBQ Table">
-    <img src="photo8.jpg" alt="BBQ Table">
-  </div>
+    <figcaption>🔥 Street Food Classics</figcaption>
+  </figure>
+
+  <figure class="about-figure">
+    <img src="photo8.jpg" alt="BBQ Night">
+    <figcaption>🍢 Shared With Family & Friends</figcaption>
+  </figure>
+
+</div>
+
 
   <!-- TEXT UNDER IMAGES -->
   <div class="about-text">
+  <div class="embers">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
     <h3>ABOUT US</h3>
     <p>
       At Gima Regato's BBQ, we don’t just serve food — we create moments.
@@ -708,9 +869,6 @@ nav a {
   </div>
 
 </section>
-
-
-
 <footer id="contact">
   <p>📍 Philippines | 📞 0955 500 8854</p>
   <p>© 2026 Gima Regato's BBQ. All rights reserved.</p>
@@ -804,3 +962,4 @@ function openOrderMenuFinal() {
 
 </body>
 </html>
+
