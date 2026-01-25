@@ -1014,95 +1014,10 @@ nav a {
   cursor: pointer;
   text-align: center;
 }
-/* Only affects mobile screens */
-@media screen and (max-width: 480px) {
-  .top-order-button-container { 
-    display: flex;
-    justify-content: center; /* Centers horizontally */
-    width: 100%;
-    padding: 10px 0; /* Adds space above/below */
-    background-color: transparent; /* Matches your black theme */
-  }
-
-  .top-order-button-container button {
-    width: 90%; /* Stops it from hitting the very edges */
-    max-width: 350px;
-    margin: 0 auto;
-    border-radius: 50px; /* Keeps that pill shape */
-    height: 45px;
-  }
-}
-/* 1. Hide the top bar by default (PC View) */
-.mobile-top-bar {
-  display: none;
-}
-
-/* 2. Mobile Specific Styling */
-@media screen and (max-width: 480px) {
-      .mobile-top-bar {
-        display: flex !important;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        padding: 15px 0;
-        background: #000;
-        position: sticky;
-        top: 0;
-        z-index: 1001;
-      }
-
-  /* Centering the button inside the bar */
-  .mobile-top-bar .order-btn {
-        display: block !important;
-        width: 90% !important;
-        max-width: 380px;
-        background-color: #d32f2f;
-        color: white;
-        padding: 12px 0;
-        border-radius: 50px;
-        border: none;
-        font-weight: bold;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        text-transform: uppercase;
-        cursor: pointer;
-      }
-
-  /* Push the header down so they don't overlap */
-  /* --- HEADER & NAV --- */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 60px;
-      background: rgba(0,0,0,.85);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .logo { display: flex; align-items: center; gap: 15px; }
-    .logo img { width: 60px; }
-    .logo h1 {
-      font-family: 'Bebas Neue', cursive;
-      color: var(--primary);
-      letter-spacing: 2px;
-    }
-
-    nav a {
-      margin-left: 25px;
-      text-decoration: none;
-      color: #fff;
-    }
-
-    nav a:hover { color: var(--primary); }
   </style>
 </head>
 
 <body>
-<div class="mobile-top-bar">
-    <button class="order-btn" onclick="openOrderMenu()">Order Now</button>
-</div>
 <header>
   <div class="logo">
     <img src="photo1.png">
@@ -1383,7 +1298,6 @@ window.addEventListener('scroll', () => {
   const offset = window.scrollY * 0.25;
   hero.style.backgroundPosition = `center ${offset}px`;
 });
-document.getElementById("mobileOrderBtn").addEventListener("click", openOrderMenu);
 </script>
 
 </body>
