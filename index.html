@@ -698,7 +698,260 @@ nav a {
   }
 }
 
+/* COMBINED IMAGE */
+.about-images-combined {
+  position: relative;
+  width: 300px;
+  max-width: 90%;
+  cursor: pointer;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 0 auto 40px auto;
+}
 
+.about-images-combined img {
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-images-combined:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 10px 40px rgba(255,140,0,0.3);
+}
+
+/* Overlay Text */
+.about-images-combined .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffb74d;
+  font-weight: 600;
+  font-size: 18px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.about-images-combined:hover .overlay {
+  opacity: 1;
+}
+
+/* MODAL HORIZONTAL IMAGES */
+.about-modal-content {
+  position: relative;
+  background: #1e1e1e;
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 90%;
+  overflow-x: auto;
+}
+
+.about-images-horizontal {
+  display: flex;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+.about-images-horizontal img {
+  width: 250px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-images-horizontal img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(255,140,0,0.4);
+}
+
+/* SCROLLBAR STYLING (optional) */
+.about-images-horizontal::-webkit-scrollbar {
+  height: 8px;
+}
+
+.about-images-horizontal::-webkit-scrollbar-thumb {
+  background: #ff9800;
+  border-radius: 4px;
+}
+
+.about-images-horizontal::-webkit-scrollbar-track {
+  background: #333;
+}
+
+/* COLLAGE IMAGES */
+.about-images-collage {
+  position: relative;
+  width: 320px;
+  max-width: 90%;
+  height: 240px;
+  margin: 0 auto 40px auto;
+  cursor: pointer;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.collage-img {
+  position: absolute;
+  width: 160px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.collage-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(255,140,0,0.4);
+}
+
+/* LAYERING */
+.img1 { top: 0; left: 0; z-index: 4; transform: rotate(-5deg); }
+.img2 { top: 0; right: 0; z-index: 3; transform: rotate(5deg); }
+.img3 { bottom: 0; left: 0; z-index: 2; transform: rotate(3deg); }
+.img4 { bottom: 0; right: 0; z-index: 1; transform: rotate(-3deg); }
+
+/* Overlay Text */
+.about-images-collage .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35); /* slight dark overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffb74d;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  z-index: 20; /* make sure it’s above the images */
+  opacity: 1; /* always visible */
+  pointer-events: none; /* click passes through to the collage if needed */
+  padding: 0 10px;
+}
+
+
+.about-images-collage:hover .overlay {
+  opacity: 1;
+}
+/* FLOATING COLLAGE ANIMATION */
+@keyframes float1 {
+  0%, 100% { transform: translateY(0px) rotate(-5deg); }
+  50% { transform: translateY(-8px) rotate(-3deg); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translateY(0px) rotate(5deg); }
+  50% { transform: translateY(-6px) rotate(7deg); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translateY(0px) rotate(3deg); }
+  50% { transform: translateY(-7px) rotate(5deg); }
+}
+
+@keyframes float4 {
+  0%, 100% { transform: translateY(0px) rotate(-3deg); }
+  50% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+.img1 { animation: float1 4s ease-in-out infinite; }
+.img2 { animation: float2 5s ease-in-out infinite; }
+.img3 { animation: float3 4.5s ease-in-out infinite; }
+.img4 { animation: float4 5.2s ease-in-out infinite; }
+
+/* Optional: Slight glow like embers */
+.about-images-collage .collage-img {
+  box-shadow: 0 0 20px rgba(255,140,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.about-images-collage .collage-img:hover {
+  box-shadow: 0 0 35px rgba(255,140,0,0.4);
+}
+.about-images-collage {
+  position: relative;
+  width: 350px;
+  max-width: 90%;
+  height: 250px;
+  margin: 0 auto 40px auto;
+  cursor: pointer;
+}
+
+.about-images-collage figure {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-images-collage figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-images-collage figure figcaption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background: rgba(0,0,0,0.6);
+  color: #ffb74d;
+  font-weight: 600;
+  padding: 4px 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 14px;
+}
+
+.about-images-collage figure:hover figcaption {
+  opacity: 1;
+}
+
+.about-images-collage figure:hover {
+  transform: scale(1.1) rotate(0deg);
+  box-shadow: 0 10px 35px rgba(255,140,0,0.4);
+  z-index: 10;
+}
+
+/* Initial positions for overlapping polaroid vibe */
+.img1 { top: 10px; left: 0; transform: rotate(-5deg); animation: float1 4s ease-in-out infinite; }
+.img2 { top: 30px; left: 80px; transform: rotate(3deg); animation: float2 5s ease-in-out infinite; }
+.img3 { top: 5px; left: 160px; transform: rotate(-2deg); animation: float3 4.5s ease-in-out infinite; }
+.img4 { top: 25px; left: 240px; transform: rotate(4deg); animation: float4 5.2s ease-in-out infinite; }
+
+/* Floating Animations */
+@keyframes float1 { 0%,100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-6px) rotate(-3deg); } }
+@keyframes float2 { 0%,100% { transform: translateY(0) rotate(3deg); } 50% { transform: translateY(-5px) rotate(5deg); } }
+@keyframes float3 { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-4px) rotate(0deg); } }
+@keyframes float4 { 0%,100% { transform: translateY(0) rotate(4deg); } 50% { transform: translateY(-5px) rotate(2deg); } }
+
+/* Overlay text */
+.about-images-collage .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffb74d;
+  font-weight: 600;
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.about-images-collage:hover .overlay {
+  opacity: 1;
+}
+.about-images-collage .overlay p {
+  text-shadow: 0 0 8px rgba(255,152,0,0.8),
+               0 0 15px rgba(255,87,34,0.6);
+}
 
   </style>
 </head>
@@ -822,30 +1075,45 @@ nav a {
 </section>
 <section id="about" class="section about fade-in">
 
-  <!-- IMAGES -->
-  <div class="about-images-grid">
-  <figure class="about-figure">
-    <img src="photo5.jpg" alt="BBQ Setup">
-    <figcaption>🔥 Freshly Grilled Every Day</figcaption>
+  <!-- DYNAMIC COLLAGE -->
+<!-- CUSTOMER PHOTO RATING COLLAGE -->
+<div class="about-images-collage" onclick="openAboutModal()">
+  <figure class="collage-img img1">
+    <img src="photo5.jpg" alt="Happy Customer 1">
+    <figcaption>⭐⭐⭐⭐⭐</figcaption>
   </figure>
-
-  <figure class="about-figure">
-    <img src="photo6.jpg" alt="BBQ Grill">
-    <figcaption>🍖 Authentic Filipino BBQ</figcaption>
+  <figure class="collage-img img2">
+    <img src="photo6.jpg" alt="Happy Customer 2">
+    <figcaption>⭐⭐⭐⭐⭐</figcaption>
   </figure>
-
-  <figure class="about-figure">
-    <img src="photo7.jpg" alt="BBQ Table">
-    <figcaption>🔥 Street Food Classics</figcaption>
+  <figure class="collage-img img3">
+    <img src="photo7.jpg" alt="Happy Customer 3">
+    <figcaption>⭐⭐⭐⭐⭐</figcaption>
   </figure>
-
-  <figure class="about-figure">
-    <img src="photo8.jpg" alt="BBQ Night">
-    <figcaption>🍢 Shared With Family & Friends</figcaption>
+  <figure class="collage-img img4">
+    <img src="photo8.jpg" alt="Happy Customer 4">
+    <figcaption>⭐⭐⭐⭐⭐</figcaption>
   </figure>
-
+  <div class="overlay">
+    <p>Click to see all our happy customers!</p>
+  </div>
 </div>
 
+
+  <!-- MODAL WITH HORIZONTAL IMAGES -->
+  <div id="aboutModal" class="modal">
+    <div class="modal-content about-modal-content">
+      <span class="close" onclick="closeAboutModal()">×</span>
+      <div class="about-images-horizontal">
+        <img src="photo5.jpg" alt="BBQ Setup">
+        <img src="photo6.jpg" alt="BBQ Grill">
+        <img src="photo7.jpg" alt="BBQ Table">
+        <img src="photo8.jpg" alt="BBQ Night">
+        <img src="photo9.jpg" alt="BBQ Night">
+        <img src="photo10.jpg" alt="BBQ Night">
+      </div>
+    </div>
+  </div>
 
   <!-- TEXT UNDER IMAGES -->
   <div class="about-text">
@@ -958,8 +1226,15 @@ function openOrderMenuFinal() {
   summary.innerHTML = "<strong>Your Order:</strong><br>" + selectedItems.join("<br>");
   document.getElementById("orderModal").classList.add("show");
 }
+function openAboutModal() {
+  document.getElementById("aboutModal").classList.add("show");
+}
+
+function closeAboutModal() {
+  document.getElementById("aboutModal").classList.remove("show");
+}
+
 </script>
 
 </body>
 </html>
-
