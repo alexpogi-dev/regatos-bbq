@@ -50,6 +50,18 @@
     nav a:hover { color: var(--primary); }
 
     /* HERO */
+    .hero {
+      height: 90vh;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)),
+        url('bbq-bg.jpg') center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
     .hero-content { z-index: 2; }
 
     .hero h2 {
@@ -191,7 +203,11 @@
       overflow: hidden;
       transition: 0.3s;
     }
-    
+
+    .menu-card:hover {
+      transform: translateY(-8px);
+    }
+
     .menu-card img {
       width: 100%;
       height: 200px;
@@ -207,6 +223,13 @@
       color: var(--primary);
     }
     /* ABOUT */
+    .about {
+      background: #ff5e00;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      align-items: center;
+    }
 
     .about img {
       width: 100%;
@@ -268,7 +291,16 @@
 
 }
 /* EMBERS */
-
+.embers span {
+  position: absolute;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  background: orange;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: rise 4s linear infinite;
+}
 
 @keyframes rise {
   from {
@@ -315,10 +347,22 @@
   transition: 0.6s;
 }
 
+.menu-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 15px 40px rgba(255, 140, 0, 0.25);
+}
 html {
   scroll-behavior: smooth;
 }
 /* ABOUT */
+    .about {
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+}
+
     .about img {
       width: 100%;
       border-radius: 20px;
@@ -339,7 +383,15 @@ nav a {
   padding: 10px 12px;
   display: inline-block;
 }
-
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background: url("bbq-bg.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
 
 .hero-overlay {
   position: absolute;
@@ -391,8 +443,6 @@ nav a {
 
 .hero-btn:hover {
   background: #b71c1c;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(198, 40, 40, 0.4);
 }
 
 .hero-link {
@@ -401,9 +451,7 @@ nav a {
   font-size: 15px;
   padding: 14px 20px;
 }
-.hero-btn:active {
-  transform: translateY(1px) scale(0.98);
-}
+
 .hero-meta {
   margin-top: 25px;
   font-size: 13px;
@@ -416,7 +464,6 @@ nav a {
 
   .hero-btn {
     width: 100%;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 }
 .menu-options {
@@ -558,6 +605,11 @@ nav a {
     grid-template-columns: 1fr;
   }
 /* 🔥 DENSE FIRE EMBERS (WORKING) */
+.embers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
 
 .embers span {
   position: absolute;
@@ -567,8 +619,9 @@ nav a {
   border-radius: 50%;
   background: radial-gradient(circle, #fff59d, #ff9800, #e65100);
   opacity: 0.9;
-  animation: emberUp 6s linear infinite;
+  animation: emberUp linear infinite;
 }
+
 /* DISTRIBUTE EMBERS ACROSS WIDTH */
 .embers span:nth-child(1)  { left: 5%;  animation-duration: 3s; }
 .embers span:nth-child(2)  { left: 10%; animation-duration: 4s; }
@@ -616,7 +669,16 @@ nav a {
   z-index: 2;
 }
 
-
+.embers span {
+  position: absolute;
+  bottom: -20px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff59d, #ff9800, #e65100);
+  opacity: 0.9;
+  animation: emberUp linear infinite;
+}
 
 /* spread embers */
 .embers span:nth-child(odd) {
@@ -757,7 +819,22 @@ nav a {
 .img4 { bottom: 0; right: 0; z-index: 1; transform: rotate(-3deg); }
 
 /* Overlay Text */
-
+.about-images-collage .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35); /* slight dark overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffb74d;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  z-index: 20; /* make sure it’s above the images */
+  opacity: 1; /* always visible */
+  pointer-events: none; /* click passes through to the collage if needed */
+  padding: 0 10px;
+}
 
 
 .about-images-collage:hover .overlay {
@@ -797,6 +874,14 @@ nav a {
 .about-images-collage .collage-img:hover {
   box-shadow: 0 0 35px rgba(255,140,0,0.4);
 }
+.about-images-collage {
+  position: relative;
+  width: 350px;
+  max-width: 90%;
+  height: 250px;
+  margin: 0 auto 40px auto;
+  cursor: pointer;
+}
 
 .about-images-collage figure {
   position: absolute;
@@ -805,13 +890,26 @@ nav a {
   overflow: hidden;
   border-radius: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-   margin: 0 10px;
 }
 
 .about-images-collage figure img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.about-images-collage figure figcaption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background: rgba(0,0,0,0.6);
+  color: #ffb74d;
+  font-weight: 600;
+  padding: 4px 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 14px;
 }
 
 .about-images-collage figure:hover figcaption {
@@ -847,7 +945,8 @@ nav a {
   color: #ffb74d;
   font-weight: 600;
   font-size: 16px;
- transition: opacity 0.3s ease;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .about-images-collage:hover .overlay {
@@ -939,6 +1038,10 @@ nav a {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
+.about-images-horizontal img {
+  background: #111;
+  padding: 6px;
+}
 /* 📱 MOBILE: About Us images stack vertically */
 @media (max-width: 768px) {
   .about-images-horizontal {
@@ -948,387 +1051,17 @@ nav a {
     overflow-x: hidden; /* remove horizontal scroll */
   }
 
-  
+  .about-images-horizontal img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+  }
 }
 @media (max-width: 768px) {
   .about-images-horizontal img {
     border-radius: 18px;
     box-shadow: 0 12px 30px rgba(255,140,0,0.25);
   }
-}
-.Pork-BQB-img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 12px;
-    
-}
-/* ORDER SELECTION WITH IMAGES */
-.menu-item {
-  background: #1f1f1f;
-  padding: 14px;
-  border-radius: 14px;
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  gap: 14px;
-
-  transition: 0.25s ease;
-}
-
-.menu-item:hover {
-  background: #2a2a2a;
-  transform: translateY(-2px);
-}
-
-/* Checkbox */
-.menu-item input {
-  transform: scale(1.2);
-}
-
-/* Image */
-.order-img {
-  width: 70px;
-  height: 70px;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(255,140,0,0.25);
-}
-
-/* Text */
-.order-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.order-name {
-  font-weight: 600;
-  font-size: 15px;
-}
-
-.order-price {
-  font-size: 14px;
-  color: #ffb74d;
-}
-@media (max-width: 480px) {
-  .order-img {
-    width: 60px;
-    height: 60px;
-  }
-}
-.about-images-collage {
-  cursor: pointer;
-}
-.about {
-  background: #111;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  align-items: center;
-}
-@media (max-width: 768px) {
-  .embers,
-  .smoke {
-    display: none;
-  }
-}
-.about-images-horizontal {
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-
-.about-images-horizontal img {
-  scroll-snap-align: center;
-}
-@media (max-width: 480px) {
-  .about-images-horizontal img {
-    width: 85vw;
-    height: 220px;
-  }
-}
-.about-images-collage .overlay {
-  pointer-events: none !important;
-}
-.about-images-collage img {
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(255,140,0,0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.about-images-collage img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(255,140,0,0.4);
-}
-/* Reviews Header */
-.reviews-header {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 28px;
-  text-align: center;
-  color: #ffb74d;
-  margin-bottom: 40px;
-  text-shadow: 0 0 6px rgba(255,152,0,0.8),
-               0 0 16px rgba(255,87,34,0.6);
-  letter-spacing: 1.5px;
-}
-
-/* Collage Layout */
-.about-images-collage {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  position: relative;
-  margin-bottom: 50px;
-}
-
-.about-images-collage figure {
-  width: 140px;
-  height: 140px;
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  border-radius: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.about-images-collage figure:hover img {
-  transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(255,140,0,0.4);
-}
-
-/* Figcaption (Rating) */
-.about-images-collage figure figcaption {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-  color: #ffb74d;
-  font-weight: 600;
-  padding: 6px 0;
-  font-size: 14px;
-}
-
-/* Floating Animations */
-.img1 { animation: float1 4s ease-in-out infinite; }
-.img2 { animation: float2 5s ease-in-out infinite; }
-.img3 { animation: float3 4.5s ease-in-out infinite; }
-.img4 { animation: float4 5.2s ease-in-out infinite; }
-
-@keyframes float1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-@keyframes float2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
-@keyframes float3 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-@keyframes float4 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
-
-/* Modal */
-.about-modal-content {
-  position: relative;
-  background: #1e1e1e;
-  padding: 25px;
-  border-radius: 20px;
-  max-width: 90%;
-  overflow-x: auto;
-}
-
-.about-images-horizontal {
-  display: flex;
-  gap: 16px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-
-.about-images-horizontal img {
-  width: 200px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 15px;
-  scroll-snap-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.about-images-horizontal img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 30px rgba(255,140,0,0.4);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .about-images-collage {
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-  }
-  .about-images-collage figure {
-    width: 120px;
-    height: 120px;
-  }
-  .about-images-horizontal img {
-    width: 160px;
-    height: 120px;
-  }
-}
-.about-images-collage {
-  position: relative; /* parent for absolute positioning */
-  width: 100%;
-  height: 400px; /* adjust height to fit scattered images */
-  margin: 0 auto 50px auto;
-  overflow: hidden;
-}
-
-.about-images-collage figure {
-  position: absolute; /* allows free positioning */
-  width: 120px;
-  height: 120px;
-  cursor: pointer;
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
-}
-
-.about-images-collage figure img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 20px;
-}
-
-.about-images-collage figure:hover {
-  transform: scale(1.1) rotate(0deg);
-  z-index: 10;
-  box-shadow: 0 10px 35px rgba(255,140,0,0.4);
-}
-/* =================== Reviews Collage =================== */
-.reviews-collage {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  max-width: 1000px;
-  margin: 0 auto 40px auto;
-}
-
-.reviews-collage figure {
-  position: relative;
-  width: 180px;
-  height: 180px;
-  overflow: hidden;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.reviews-collage figure img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.reviews-collage figure:hover img {
-  transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(255,140,0,0.4);
-}
-
-.reviews-collage figure figcaption {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-  color: #ffb74d;
-  font-weight: 600;
-  padding: 8px 0;
-  font-size: 16px;
-}
-
-/* Optional: subtle floating effect */
-.reviews-collage figure {
-  animation: floatReviews 4s ease-in-out infinite alternate;
-}
-
-@keyframes floatReviews {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0); }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .reviews-collage {
-    gap: 15px;
-  }
-  .reviews-collage figure {
-    width: 140px;
-    height: 140px;
-  }
-  .reviews-collage figure figcaption {
-    font-size: 14px;
-    padding: 6px 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .reviews-collage {
-    gap: 10px;
-  }
-  .reviews-collage figure {
-    width: 120px;
-    height: 120px;
-  }
-}
-.modal {
-  display: none;
-  opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.modal.show {
-  display: flex;
-  opacity: 1;
-  transform: scale(1);
-}
-#mobileOrderBtn {
-  padding: 14px 24px;
-  background: var(--accent);
-  border-radius: 50px;
-  box-shadow: 0 6px 20px rgba(198,40,40,0.5);
-  font-weight: bold;
-  transition: transform 0.2s ease;
-}
-
-#mobileOrderBtn:hover {
-  transform: translateY(-2px) scale(1.05);
-}
-.menu-card img {
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.menu-card:hover img {
-  transform: scale(1.05);
-  filter: brightness(1.1);
-}
-.order-price {
-  font-weight: bold;
-  background: linear-gradient(90deg, #ff9800, #ffb74d);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-#backToTop {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  padding: 12px 18px;
-  background: var(--primary);
-  border-radius: 50%;
-  font-size: 18px;
-  color: #111;
-  display: none;
-  cursor: pointer;
-  z-index: 999;
-}
-
-#backToTop:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 18px rgba(255,152,0,0.5);
 }
 
   </style>
@@ -1369,35 +1102,24 @@ nav a {
 <div id="menuModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeMenuModal()">×</span>
+
     <h3>Select Your Order</h3>
+
     <div class="menu-options">
-       <label class="menu-item">
-  <input type="checkbox" value="Pork BBQ">
-  <img src="photo2.jpg" class="order-img" loading="lazy">
-  <div class="order-info">
-    <span class="order-name">Pork BBQ</span>
-    <span class="order-price">₱25</span>
-  </div>
-</label>
-        🍖 Pork BBQ – ₱25
       <label class="menu-item">
-  <input type="checkbox" value="Pork BBQ">
-  <img src="photo2.jpg" class="order-img" loading="lazy">
-  <div class="order-info">
-    <span class="order-name">Pork BBQ</span>
-    <span class="order-price">₱25</span>
-  </div>
-</label>
+        <input type="checkbox" value="Pork BBQ">
+        🍖 Pork BBQ – ₱25
+      </label>
+
+      <label class="menu-item">
+        <input type="checkbox" value="Hotdog BBQ">
         🌭 Hotdog BBQ – ₱20
-    <label class="menu-item">
-  <input type="checkbox" value="Pork BBQ">
-  <img src="photo2.jpg" class="order-img" loading="lazy">
-  <div class="order-info">
-    <span class="order-name">Pork BBQ</span>
-    <span class="order-price">₱25</span>
-  </div>
-</label>
+      </label>
+
+      <label class="menu-item">
+        <input type="checkbox" value="Isaw">
         🔥 Isaw – ₱15
+      </label>
     </div>
 
     <button class="btn" onclick="proceedToCheckout()">
@@ -1405,6 +1127,7 @@ nav a {
     </button>
   </div>
 </div>
+
 
 <!-- ORDER MODAL -->
 <div id="orderModal" class="modal">
@@ -1461,58 +1184,46 @@ nav a {
   </div>
 </section>
 <section id="about" class="section about fade-in">
-<!-- CUSTOMER REVIEWS -->
-<section id="reviews" class="section">
-  <div class="reviews-header">Rated by Customers</div>
 
-  <div class="reviews-collage">
-    <figure>
-      <img src="photo5.jpg" alt="Happy Customer 1" class="review-img">
-      <figcaption>⭐⭐⭐⭐⭐</figcaption>
-    </figure>
-    <figure>
-      <img src="photo6.jpg" alt="Happy Customer 2" class="review-img">
-      <figcaption>⭐⭐⭐⭐⭐</figcaption>
-    </figure>
-    <figure>
-      <img src="photo7.jpg" alt="Happy Customer 3" class="review-img">
-      <figcaption>⭐⭐⭐⭐⭐</figcaption>
-    </figure>
-    <figure>
-      <img src="photo8.jpg" alt="Happy Customer 4" class="review-img">
-      <figcaption>⭐⭐⭐⭐⭐</figcaption>
-    </figure>
-  </div>
-
-  <!-- MODAL -->
+  <!-- DYNAMIC COLLAGE -->
+<!-- CUSTOMER PHOTO RATING COLLAGE -->
+ <div class="reviews-header">
+  Rated by customers
+</div>
+<div class="about-images-collage" onclick="openAboutModal()">
+  <figure class="collage-img img1">
+    <img src="photo5.jpg" class="review-img" alt="Happy Customer">
+    <figcaption>⭐⭐⭐⭐⭐</figcaption>
+  </figure>
+  <figure class="collage-img img2">
+    <img src="photo6.jpg" class="review-img" alt="Happy Customer">
+    <figcaption>⭐⭐⭐⭐⭐</figcaption>
+  </figure>
+  <figure class="collage-img img3">
+    <img src="photo7.jpg" class="review-img" alt="Happy Customer">
+    <figcaption>⭐⭐⭐⭐⭐</figcaption>
+  </figure>
+  <figure class="collage-img img4">
+    <img src="photo8.jpg" class="review-img" alt="Happy Customer">
+    <figcaption>⭐⭐⭐⭐⭐</figcaption>
+  </figure>
+  <div class="overlay">
+</div>
+</div>
+  <!-- MODAL WITH HORIZONTAL IMAGES -->
   <div id="aboutModal" class="modal">
     <div class="modal-content about-modal-content">
       <span class="close" onclick="closeAboutModal()">×</span>
       <div class="about-images-horizontal">
-        <img src="photo5.jpg" alt="Customer 1" loading="lazy">
-        <img src="photo6.jpg" alt="Customer 2" loading="lazy">
-        <img src="photo7.jpg" alt="Customer 3" loading="lazy">
-        <img src="photo8.jpg" alt="Customer 4" loading="lazy">
+        <img src="photo5.jpg" alt="BBQ Setup" loading="lazy">
+        <img src="photo6.jpg" alt="BBQ Grill" loading="lazy">
+        <img src="photo7.jpg" alt="BBQ Table" loading="lazy">
+        <img src="photo8.jpg" alt="BBQ Night" loading="lazy">
+        <img src="photo9.jpg" alt="BBQ Night" loading="lazy">
+        <img src="photo10.jpg" alt="BBQ Night" loading="lazy">
       </div>
     </div>
   </div>
-<div class="about-text fade-in">
-  <div class="embers">
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
-  <h3>Visit Our Carmen Branch</h3>
-  <p>
-    Located at Purok 4-a Sto Nino Highway right side, Carmen, Davao del Norte and Enjoy freshly grilled BBQ in a cozy atmosphere with family and friends. Open daily from 3PM – 11PM.
-  </p>
-</div>
-</section>
   <!-- TEXT UNDER IMAGES -->
   <div class="about-text">
   <div class="embers">
@@ -1539,7 +1250,6 @@ nav a {
   <p>📍 Philippines | 📞 0955 500 8854</p>
   <p>© 2026 Gima Regato's BBQ. All rights reserved.</p>
 </footer>
-<button id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">⬆️ </button>
 
 
 <script>
@@ -1551,6 +1261,26 @@ nav a {
 function closeMenuModal() {
   document.getElementById("menuModal").classList.remove("show");
 }
+
+function proceedToCheckout() {
+  selectedItems = [];
+
+  document.querySelectorAll("#menuModal input:checked")
+    .forEach(item => selectedItems.push(item.value));
+
+  if (selectedItems.length === 0) {
+    alert("Please select at least one item.");
+    return;
+  }
+
+  closeMenuModal();
+  openOrderMenuFinal();
+}
+
+function openOrderMenuFinal() {
+  document.getElementById("orderModal").classList.add("show");
+}
+
 
   function closeOrderMenu() {
     document.getElementById("orderModal").classList.remove("show");
@@ -1578,16 +1308,13 @@ function closeMenuModal() {
 
 let selectedItems = [];
 
-function openOrderMenu() {
-  document.getElementById("menuModal").classList.add("show");
-}
-
 function closeMenuModal() {
   document.getElementById("menuModal").classList.remove("show");
 }
 
 function proceedToCheckout() {
   selectedItems = [];
+
   document.querySelectorAll("#menuModal input:checked")
     .forEach(item => selectedItems.push(item.value));
 
@@ -1601,16 +1328,20 @@ function proceedToCheckout() {
 }
 
 function openOrderMenuFinal() {
-  const summary = document.getElementById("orderSummary");
-  summary.innerHTML =
-    "<strong>Your Order:</strong><br>" + selectedItems.join("<br>");
   document.getElementById("orderModal").classList.add("show");
 }
-
-function closeOrderMenu() {
-  document.getElementById("orderModal").classList.remove("show");
+function openOrderMenuFinal() {
+  const summary = document.getElementById("orderSummary");
+  summary.innerHTML = "<strong>Your Order:</strong><br>" + selectedItems.join("<br>");
+  document.getElementById("orderModal").classList.add("show");
+}
+function openAboutModal() {
+  document.getElementById("aboutModal").classList.add("show");
 }
 
+function closeAboutModal() {
+  document.getElementById("aboutModal").classList.remove("show");
+}
 const hero = document.querySelector('.hero');
 
 window.addEventListener('scroll', () => {
@@ -1628,43 +1359,10 @@ const reviewObserver = new IntersectionObserver(entries => {
 document.querySelectorAll(".review-img").forEach(img => {
   reviewObserver.observe(img);
 });
-function openAboutModal() {
-  document.getElementById("aboutModal").classList.add("show");
-}
-function closeAboutModal() {
-  document.getElementById("aboutModal").classList.remove("show");
-}
-function scatterReviews() {
-  const collage = document.querySelector(".about-images-collage");
-  const figures = collage.querySelectorAll("figure");
-  
-  const collageWidth = collage.clientWidth;
-  const collageHeight = collage.clientHeight;
-
-  figures.forEach(fig => {
-    const maxX = collageWidth - fig.offsetWidth;
-    const maxY = collageHeight - fig.offsetHeight;
-    
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
-    const randomRot = (Math.random() * 20) - 10; // rotate -10 to +10 degrees
-
-    fig.style.left = `${randomX}px`;
-    fig.style.top = `${randomY}px`;
-    fig.style.transform = `rotate(${randomRot}deg)`;
-  });
-}
-
-// Run on page load
-window.addEventListener("load", scatterReviews);
-window.addEventListener("resize", scatterReviews); // optional: reshuffle on resize
-
-window.addEventListener('scroll', () => {
-  const btn = document.getElementById('backToTop');
-  btn.style.display = window.scrollY > 400 ? 'block' : 'none';
-});
 
 </script>
 
 </body>
 </html> 
+
+
